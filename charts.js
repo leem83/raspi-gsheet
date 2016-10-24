@@ -10,7 +10,7 @@ function drawVisualization() {
         }
         var data = response.getDataTable();
 
-        // create a NumberFilter control
+        // create a NumberFilter control.
         var filter = new google.visualization.ControlWrapper({
             controlType: 'ChartRangeFilter',
             containerId: 'control_div',
