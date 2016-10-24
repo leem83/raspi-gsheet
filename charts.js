@@ -82,6 +82,32 @@ function drawVisualization() {
         // Draw the dashboard
         draw(data);
     });
+    
+    var query2 = new google.visualization.Query('http://docs.google.com/spreadsheet/tq?key=1zRWmhJSyulz6cltrTIQgvkjpVtLphh0RiY3F_gwgrFw&gid=1569309500');
+    //query.setQuery('SELECT A');
+    query2.send(function (response) {
+        if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+        }
+
+        var data = response.getDataTable();
+
+        var gauge = new google.visualization.ChartWrapper({
+            chartType: 'Gauge',
+            containerId: 'gauge_div',
+            dataTable: data,
+            options: {
+                greenFrom: 68, greenTo: 74,
+                yellowFrom:74, yellowTo: 78,
+                redFrom: 78, redTo: 100,
+                minorTicks: 5
+            }
+        });
+        
+        gauge.draw();
+        
+    });
 }
 
 google.load('visualization', '1', {
